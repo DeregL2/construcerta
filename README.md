@@ -238,3 +238,8 @@ Este repositorio segue o fluxo de gitflow pedido pela atividade
 (branch `develop`, branches `feature/*` e Pull Requests para
 `develop`). O passo a passo exato dos comandos usados para publicar
 este projeto esta em [`docs/guia-gitflow.md`](docs/guia-gitflow.md).
+
+## Melhorias futuras
+
+- Permitir upload de imagem para os produtos
+- Adicionar paginação no catálogo
