@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head :: head(title='Catalogo')}"></head>
+<body>
+<div th:replace="~{fragments/navbar :: navbar}"></div>
+
+<main class="page-content">
+    <h1>Ola, <span th:text="${usuario.fullName}">Cliente</span>!</h1>
+    <p>Confira o catalogo de materiais de construcao disponiveis no <strong th:text="${theme.logoText}">ConstruCerta</strong>.</p>
+
+    <section class="card">
+        <h2>Meus dados</h2>
+        <ul>
+            <li><strong>Usuario:</strong> <span th:text="${usuario.username}"></span></li>
+            <li><strong>E-mail:</strong> <span th:text="${usuario.email}"></span></li>
+            <li>
+                <strong>Perfis:</strong>
+                <span th:each="role, iter : ${usuario.roles}">
+                    <span th:text="${role.label}"></span><span th:if="!${iter.last}">, </span>
+                </span>
+            </li>
+        </ul>
+    </section>
+
+    <section class="card">
+        <h2>Catalogo</h2>
+        <table class="produto-table" th:if="${not #lists.isEmpty(produtos)}">
+            <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Categoria</th>
+                <th>Unidade</th>
+                <th>Preco</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="p : ${produtos}">
+                <td th:text="${p.nome}"></td>
+                <td th:text="${p.categoria}"></td>
+                <td th:text="${p.unidadeMedida}"></td>
+                <td th:text="${'R$ ' + #numbers.formatDecimal(p.preco, 1, 2)}"></td>
+            </tr>
+            </tbody>
+        </table>
+        <p th:if="${#lists.isEmpty(produtos)}">Nenhum produto cadastrado no catalogo ainda.</p>
+    </section>
+</main>
+</body>
+</html>
